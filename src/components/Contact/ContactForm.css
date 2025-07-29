@@ -10,6 +10,7 @@
   background: linear-gradient(270deg, #ed4a4a, #ffffff);
   background-size: 400% 400%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientRun 6s ease infinite;
 }
