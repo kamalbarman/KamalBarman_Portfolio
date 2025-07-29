@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import About from "./components/About/About";
-import Experience from "./components/Experience/Experience";
+import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects/Projects";
 import ContactForm from "./components/Contact/ContactForm";
 import Footer from "./components/Footer/Footer";
@@ -15,7 +15,7 @@ function App() {
       <Navbar />
       <Profile />
       <About />
-      <Experience />
+      <Skills />
       <Projects />
       <ContactForm />
       <Footer />
@@ -25,3 +25,4 @@ function App() {
 }
 
 export default App;
+

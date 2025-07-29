@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -13,9 +13,58 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    const onScroll = () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        if (
+          window.scrollY >= sectionTop &&
+          window.scrollY < sectionTop + sectionHeight
+        ) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href").slice(1) === current) {
+          link.classList.add("active");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const trail = document.createElement("div");
+    trail.id = "cursor-trail";
+    document.body.appendChild(trail);
+
+    const moveTrail = (e) => {
+      const dot = document.createElement("div");
+      dot.className = "cursor-dot";
+      dot.style.left = `${e.clientX}px`;
+      dot.style.top = `${e.clientY}px`;
+      document.body.appendChild(dot);
+      setTimeout(() => dot.remove(), 500);
+    };
+
+    window.addEventListener("mousemove", moveTrail);
+    return () => {
+      window.removeEventListener("mousemove", moveTrail);
+      document.getElementById("cursor-trail")?.remove();
+    };
+  }, []);
+
   return (
     <nav className="navbar">
-      {/* Clickable logo scrolls to Home */}
       <a href="#Home" className="logo" onClick={closeMenu}>
         Kamal Barman
       </a>
@@ -23,7 +72,7 @@ const Navbar = () => {
       <ul className={`nav-links ${isOpen ? "open" : ""}`}>
         <li><a href="#Home" onClick={closeMenu}>Home</a></li>
         <li><a href="#about" onClick={closeMenu}>About</a></li>
-        <li><a href="#experience" onClick={closeMenu}>Experience</a></li>
+        <li><a href="#Skills" onClick={closeMenu}>Skill</a></li>
         <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
         <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
       </ul>

@@ -27,9 +27,16 @@
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
-  background-color: #111;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #ed4a4a88;
+  background: rgba(17, 17, 17, 0.5);
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(237, 74, 74, 0.3);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.contact-form:hover {
+  box-shadow: 0 0 25px rgba(237, 74, 74, 0.6);
 }
 
 /* 📱 Responsive tweak */
@@ -42,24 +49,25 @@
 .contact-form input,
 .contact-form textarea {
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #444;
-  background-color: #181818;
+  background: rgba(24, 24, 24, 0.6);
   color: #eee;
   font-size: 1rem;
   font-family: inherit;
   width: 100%;
-  transition: border 0.3s, box-shadow 0.3s;
+  transition: border 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #888;
+  color: #999;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: #ed4a4a;
+  background-color: rgba(24, 24, 24, 0.8);
   box-shadow: 0 0 8px rgba(237, 74, 74, 0.5);
   outline: none;
 }
@@ -72,11 +80,23 @@
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-form button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px #ed4a4a99;
+  box-shadow: 0 0 15px rgba(237, 74, 74, 0.6);
+}
+
+/* Optional: Smooth reveal for AOS */
+[data-aos] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
 }

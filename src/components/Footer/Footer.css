@@ -27,7 +27,7 @@
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background-color: #646cff;
+  background-color: #ff6480;
   color: white;
   border: none;
   border-radius: 50%;
@@ -40,5 +40,5 @@
 }
 
 .back-to-top:hover {
-  background-color: #535bf2;
+  background-color: #65000f;
 }

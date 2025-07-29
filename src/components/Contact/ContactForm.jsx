@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./ContactForm.css";
 
 const ContactForm = () => {
@@ -9,6 +11,10 @@ const ContactForm = () => {
     subject: "",
     message: "",
   });
+
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,15 +35,15 @@ const ContactForm = () => {
 
     emailjs
       .send(
-        "service_19f7j29",     // ✅ Your Service ID
-        "template_6yrr10j",    // ✅ Your Template ID
+        "service_19f7j29",     // Your Service ID
+        "template_6yrr10j",    // Your Template ID
         {
           from_name: name,
           from_email: email,
           subject: subject,
           message: message,
         },
-        "ft9CZba4ioD0-n326"    // ✅ Your Public Key
+        "ft9CZba4ioD0-n326"    // Your Public Key
       )
       .then(
         () => {
@@ -57,9 +63,14 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="contact-section" id="contact">
-      <h2>Contact Me</h2>
-      <form onSubmit={handleSubmit} className="contact-form">
+    <section className="contact-section" id="contact" data-aos="fade-up">
+      <h2 data-aos="fade-up" data-aos-delay="100">Contact Me</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="contact-form"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
         <input
           type="text"
           name="name"

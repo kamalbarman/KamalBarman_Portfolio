@@ -41,3 +41,15 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}

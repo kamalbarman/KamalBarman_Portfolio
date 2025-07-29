@@ -1,0 +1,121 @@
+/* Skills.css */
+
+.Skills-section {
+  padding: 60px 20px;
+  background: var(--bg-gradient);
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Section Header */
+.category-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  color: var(--accent-color);
+}
+
+.skill-group {
+  margin-bottom: 40px;
+}
+
+.skill-group h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--highlight-color);
+}
+
+/* Flex container for skills */
+.Skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Individual Skill Item */
+.Skills-item {
+  background: var(--card-bg, #1a1a1a);
+  border-radius: 12px;
+  padding: 18px 14px;
+  width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect on Card */
+.Skills-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 18px var(--glow-color, #ff4f9c);
+}
+
+/* Logo Styling with Pop Effect */
+.skill-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.Skills-item:hover .skill-logo {
+  transform: scale(6.3) translateY(-6px);
+  filter: drop-shadow(0 0 6px var(--glow-color));
+}
+
+/* Skill Text */
+.Skills-item h4 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.Skills-item p {
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+  color: var(--muted-color, #aaa);
+}
+
+/* Icon Glow */
+.check-icon {
+  color: var(--glow-color, #ff4f9c);
+  font-size: 1.2rem;
+  margin-left: auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .Skills-item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* 🔥 AOS Scroll Reveal Effects */
+[data-aos] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+[data-aos="fade-up"] {
+  transform: translateY(30px);
+}
+
+[data-aos="fade-up"].aos-animate {
+  transform: translateY(0);
+}
+
+/* 🎯 Skill Item Reveal Glow */
+.Skills-item[data-aos] {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.Skills-item.aos-animate {
+  box-shadow: 0 0 18px var(--glow-color, #ff4f9c);
+}

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Profile.css";
 import profilePic from "../../assets/profile-pic.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Profile = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      offset: 120,
+      easing: "ease-in-out",
+      once: true
+    });
+  }, []);
+
   return (
     <section
       className="profile-section"
-      id="Home" // 🎯 Corrected ID for smooth navbar scroll
+      id="Home"
       style={{
         backgroundImage: `url(${profilePic})`,
         backgroundSize: "cover",
@@ -15,27 +26,28 @@ const Profile = () => {
         backgroundBlendMode: "screen"
       }}
     >
-      {/* Dark blur overlay */}
+      {/* Overlay */}
       <div className="overlay" />
 
-      {/* Profile Picture Glow */}
-      <div className="profile-pic-container">
+      {/* Scroll Reveal Section */}
+      <div className="profile-pic-container" data-aos="zoom-in">
         <img src={profilePic} alt="Profile" />
       </div>
 
-      {/* Text Section */}
-      <div className="profile-text">
+      <div className="profile-text" data-aos="fade-up" data-aos-delay="200">
         <h4>Hello, I'm</h4>
 
-        <div className="wave-name">
+        <div className="wave-name" data-aos="slide-up" data-aos-delay="400">
           <h1>Kamal Barman</h1>
           <h1>Kamal Barman</h1>
         </div>
 
-        <h4 className="fdeveloper">Frontend Developer</h4>
+        <h4 className="fdeveloper" data-aos="fade-up" data-aos-delay="600">
+          Frontend Developer
+        </h4>
 
         {/* Buttons */}
-        <div className="profile-buttons">
+        <div className="profile-buttons" data-aos="zoom-in" data-aos-delay="800">
           <a
             className="btn btn-outline"
             href="/assets/resume-example.pdf"
@@ -50,7 +62,7 @@ const Profile = () => {
         </div>
 
         {/* Social Media Icons */}
-        <div className="social-icons">
+        <div className="social-icons" data-aos="fade-up" data-aos-delay="1000">
           <img
             src="/assets/linkedin.png"
             alt="LinkedIn"

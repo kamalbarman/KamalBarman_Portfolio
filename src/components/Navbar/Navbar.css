@@ -1,126 +1,112 @@
-/* Navbar.css — Polished Dark Theme */
+:root {
+  --color-accent: #e63946;
+  --bg-glass: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+}
 
-/* Base styles */
+/* 🌐 Body Base */
+body {
+  background-color: #0f0f0f;
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 🔷 Navbar Container */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #1B1B1B; /* Deep Black */
   padding: 20px 10%;
   position: sticky;
   top: 0;
-  z-index: 100;
-  animation: navSlideDown 0.6s ease forwards, navbarGlow 2s infinite ease-in-out;
-  box-shadow: 0 0 20px rgba(230, 57, 70, 0.6); /* Rich Red glow */
+  z-index: 1000;
+
+  background: var(--bg-glass);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
 }
 
-/* 🔥 Animated Glow Effect */
-@keyframes navbarGlow {
-  0% {
-    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(230, 57, 70, 0.8);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba(230, 57, 70, 0.3);
-  }
-}
-
-/* Logo */
+/* ✳️ Logo */
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #E63946;
+  color: var(--color-accent);
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
-
-/* Navigation links */
+/* 🔗 Nav Links */
 .nav-links {
   display: flex;
   gap: 30px;
   list-style: none;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
 }
-
 
 .nav-links li a {
   text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
-  color: #FFFFFF; /* Crisp White */
+  color: var(--text);
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: var(--color-accent);
 }
 
 .nav-links li a::after {
   content: "";
   position: absolute;
+  bottom: -5px;
   left: 0;
-  bottom: -3px;
   width: 100%;
   height: 2px;
-  background: #E63946; /* Rich Red underline */
+  background-color: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s;
 }
 
-.nav-links li a:hover {
-  color: #E63946; /* Rich Red hover */
-}
-
-.nav-links li a:hover::after {
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
   transform: scaleX(1);
 }
 
-
-/* .cta-button {
-  background-color: #F8B400; 
-  color: #1B1B1B; 
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-} */
-
-.cta-button:hover {
-  background-color: #E63946; /* Swap to Rich Red */
-  color: #FFFFFF;
-}
-
-/* Hamburger Icon */
+/* 🍔 Hamburger Menu */
 .hamburger {
   display: none;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  color: var(--text);
   cursor: pointer;
-  color: #FFFFFF;
-  transition: transform 0.3s ease;
+  z-index: 1001;
 }
 
-.hamburger:hover {
-  transform: scale(1.1);
-}
-
-/* Mobile menu */
+/* 📱 Mobile Responsive */
 @media (max-width: 768px) {
   .nav-links {
     position: absolute;
     top: 70px;
     right: 10%;
     flex-direction: column;
-    background: #1E1E1E;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     width: 220px;
+    padding: 1rem;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
   }
 
   .nav-links.open {
@@ -134,17 +120,5 @@
 
   .hamburger {
     display: block;
-  }
-}
-
-/* Slide-down animation */
-@keyframes navSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

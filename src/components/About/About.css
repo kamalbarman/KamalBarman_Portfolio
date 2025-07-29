@@ -1,4 +1,12 @@
-/* 🎨 Section Styling */
+/* 🌌 Theme Variables */
+:root {
+  --glow-color: #ff5a5a;
+  --glow-color-soft: #ff5a5a55;
+  --glow-shadow: #ff5a5a33;
+  --text-light: #ddd;
+}
+
+/* 🧩 Section Layout */
 .about-section {
   padding: 4rem 2rem;
   background-color: #0f0f0f;
@@ -8,11 +16,11 @@
 
 .about-section h2 {
   font-size: 2.8rem;
-  color: #eb4a4a;
+  color: var(--glow-color);
   margin-bottom: 2rem;
 }
 
-/* 🖼️ About Content Layout */
+/* 📷 About Content */
 .about-content {
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +33,7 @@
 .about-image img {
   width: 300px;
   border-radius: 12px;
-  box-shadow: 0 0 20px #eb4a4a88;
+  box-shadow: 0 0 20px var(--glow-color);
   transition: transform 0.4s ease;
 }
 
@@ -33,11 +41,39 @@
   transform: scale(1.05);
 }
 
+/* 📝 About Text */
 .about-text {
   max-width: 600px;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   line-height: 1.7;
-  color: #ddd;
+  color: var(--text-light);
+}
+
+/* 🔡 Merge Letter Animation */
+.merge-effect {
+  display: inline-block;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.merge-effect .char {
+  display: inline-block;
+  white-space: pre; /* ✅ preserves spaces */
+  transform: translate(
+    calc(var(--x-offset, 0px)),
+    calc(var(--y-offset, 0px))
+  ) rotate(var(--rotate, 0deg));
+  opacity: 0;
+  animation: mergeIn 1s forwards;
+  animation-delay: calc(var(--delay) * 0.05s);
+}
+
+@keyframes mergeIn {
+  to {
+    transform: translate(0, 0) rotate(0);
+    opacity: 1;
+  }
 }
 
 /* 🎯 Focus Section */
@@ -51,38 +87,56 @@
 .focus-section h2 {
   font-size: 2.3rem;
   margin-bottom: 2rem;
-  color: #eb4a4a;
+  color: var(--glow-color);
 }
 
-/* 🔲 Grid Layout */
+/* 🔲 Grid Styling */
 .focus-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+  perspective: 800px;
 }
 
 /* 🧠 Focus Cards */
 .focus-card {
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid #eb4a4a66;
+  border: 1px solid var(--glow-color-soft);
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 15px #eb4a4a44;
-  transition: all 0.4s ease;
+  box-shadow: 0 0 15px var(--glow-shadow);
+  transition: transform 0.2s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
   position: relative;
   overflow: hidden;
   min-height: 160px;
 }
 
+.focus-card:hover {
+  box-shadow: 0 0 35px var(--glow-color);
+}
+
+/* ✨ Scroll Reveal Glow */
+.focus-card[data-aos] {
+  transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.focus-card[data-aos].aos-animate {
+  box-shadow: 0 0 18px var(--glow-color);
+  transform: scale(1.05);
+}
+
+/* 📖 Card Content */
 .focus-card h3 {
   font-size: 1.3rem;
-  color: #ff5a5a;
+  color: var(--glow-color);
   margin-bottom: 0.5rem;
 }
 
 .focus-card p {
   font-size: 0.95rem;
-  color: #ddd;
+  color: var(--text-light);
   transition: color 0.3s ease;
 }
 
@@ -93,19 +147,13 @@
   transition: opacity 0.4s ease, max-height 0.4s ease;
 }
 
-/* 🌟 Reveal extra info on hover */
-.focus-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 30px #eb4a4acc;
-}
-
 .focus-card:hover .extra-info {
   opacity: 1;
   max-height: 120px;
   margin-top: 1rem;
 }
 
-/* 📱 Responsive Adjustments */
+/* 📱 Responsive Layout */
 @media (max-width: 768px) {
   .about-content {
     flex-direction: column;
@@ -121,57 +169,12 @@
     font-size: 1rem;
     padding: 0 1rem;
   }
+
+  .focus-section h2 {
+    font-size: 2rem;
+  }
+
+  .focus-card {
+    min-height: 180px;
+  }
 }
-
-
-
-.focus-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  perspective: 800px; /* Important for 3D */
-}
-
-.focus-card {
-  padding: 1.5rem;
-  border-radius: 12px;
-  border: 1px solid #eb4a4a66;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 15px #eb4a4a44;
-  transition: transform 0.2s ease, box-shadow 0.4s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
-  position: relative;
-  overflow: hidden;
-  min-height: 160px;
-}
-
-.focus-card:hover {
-  box-shadow: 0 0 35px #eb4a4acc;
-}
-
-.focus-card h3 {
-  font-size: 1.3rem;
-  color: #ff5a5a;
-  margin-bottom: 0.5rem;
-}
-
-.focus-card p {
-  font-size: 0.95rem;
-  color: #ddd;
-  transition: color 0.3s ease;
-}
-
-.extra-info {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s ease, max-height 0.4s ease;
-}
-
-.focus-card:hover .extra-info {
-  opacity: 1;
-  max-height: 120px;
-  margin-top: 1rem;
-}
-

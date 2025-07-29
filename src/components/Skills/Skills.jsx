@@ -1,8 +1,9 @@
-import React from "react";
-import "./Experience.css";
+import React, { useEffect } from "react";
+import "./Skills.css";
 import { FaCheckCircle } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-// 🔧 Logos for Development Skills
 import htmlLogo from "../../assets/html.png";
 import jsLogo from "../../assets/javascript.png";
 import cssLogo from "../../assets/css.png";
@@ -14,8 +15,6 @@ import pythonLogo from "../../assets/python.png";
 import c from "../../assets/c.png";
 import cpp from "../../assets/cpp.png";
 
-
-// 🎨 Logos for Designing Skills
 import photoshopLogo from "../../assets/photoshop.png";
 import illustratorLogo from "../../assets/illustrator.png";
 import figmaLogo from "../../assets/figma.png";
@@ -24,7 +23,7 @@ const developmentSkills = [
   {
     title: "Programming Languages",
     skills: [
-      { name: "c", level: "Intermediate", logo: c },
+      { name: "C", level: "Intermediate", logo: c },
       { name: "C++", level: "Intermediate", logo: cpp },
       { name: "Python", level: "Intermediate", logo: pythonLogo },
       { name: "JavaScript", level: "Intermediate", logo: jsLogo },
@@ -33,8 +32,8 @@ const developmentSkills = [
   {
     title: "Web Technologies",
     skills: [
-      { name: "HTML", level: "Experienced", logo: htmlLogo },
-      { name: "CSS", level: "Experienced", logo: cssLogo },
+      { name: "HTML", level: "Skilled", logo: htmlLogo },
+      { name: "CSS", level: "Skilled", logo: cssLogo },
       { name: "React", level: "Intermediate", logo: reactLogo },
       { name: "Node.js", level: "Basic", logo: nodeLogo },
     ],
@@ -59,22 +58,36 @@ const designingSkills = [
   {
     title: "UI/UX Design",
     skills: [
-      { name: "Figma", level: "Experienced", logo: figmaLogo },
+      { name: "Figma", level: "Skilled", logo: figmaLogo },
     ],
   },
 ];
 
 const SkillSection = ({ heading, categories }) => (
-  <div className="category-section">
-    <h2>{heading}</h2>
+  <div className="category-section" data-aos="fade-up">
+    <h2 className="section-title">{heading}</h2>
     {categories.map((group, index) => (
-      <div key={index} className="skill-group">
+      <div
+        key={index}
+        className="skill-group glass-card"
+        data-aos="fade-up"
+        data-aos-delay={index * 150}
+      >
         <h3>{group.title}</h3>
-        <div className="experience-container">
+        <div className="Skills-container">
           {group.skills.map((skill, idx) => (
-            <div className="experience-item" key={idx}>
-              <img src={skill.logo} alt={skill.name} className="skill-logo" />
-              <div>
+            <div
+              className="Skills-item"
+              key={idx}
+              data-aos="zoom-in"
+              data-aos-delay={idx * 100}
+            >
+              <img
+                src={skill.logo}
+                alt={skill.name}
+                className="skill-logo"
+              />
+              <div className="skill-info">
                 <h4>{skill.name}</h4>
                 <p>{skill.level}</p>
               </div>
@@ -87,13 +100,17 @@ const SkillSection = ({ heading, categories }) => (
   </div>
 );
 
-const Experience = () => {
+const Skills = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, offset: 80, easing: "ease-in-out", once: true });
+  }, []);
+
   return (
-    <section className="experience-section" id="experience">
+    <section className="Skills-section" id="Skills">
       <SkillSection heading="Development Skills" categories={developmentSkills} />
       <SkillSection heading="Designing Skills" categories={designingSkills} />
     </section>
   );
 };
 
-export default Experience;
+export default Skills;
