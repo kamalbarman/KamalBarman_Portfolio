@@ -1,0 +1,51 @@
+.experience-section {
+  padding: 4rem 2rem;
+  background: #121212;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.experience-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #eb4a4a;
+  letter-spacing: 1px;
+}
+
+.experience-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.experience-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(235, 74, 74, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 250px;
+}
+
+.experience-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 16px #eb4a4a88;
+}
+
+.skill-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.check-icon {
+  color: #eb4a4a;
+  font-size: 1.2rem;
+  margin-left: auto;
+}
