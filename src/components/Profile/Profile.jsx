@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./Profile.css";
-import profilePic from "../../assets/profile-pic.png";
+import MarsPlanet from "../../assets/Mars_Planet2.mp4";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -15,25 +15,14 @@ const Profile = () => {
   }, []);
 
   return (
-    <section
-      className="profile-section"
-      id="Home"
-      style={{
-        backgroundImage: `url(${profilePic})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundBlendMode: "screen"
-      }}
-    >
-      {/* Overlay */}
+    <section className="profile-section" id="Home">
+      {/* 🔴 Video Background */}
+      <video className="video-bg" src={MarsPlanet} autoPlay loop muted playsInline />
+
+      {/* 🔵 Overlay */}
       <div className="overlay" />
 
-      {/* Scroll Reveal Section */}
-      <div className="profile-pic-container" data-aos="zoom-in">
-        <img src={profilePic} alt="Profile" />
-      </div>
-
+      {/* Text Content */}
       <div className="profile-text" data-aos="fade-up" data-aos-delay="200">
         <h4>Hello, I'm</h4>
 
@@ -61,7 +50,7 @@ const Profile = () => {
           </a>
         </div>
 
-        {/* Social Media Icons */}
+        {/* Social Media */}
         <div className="social-icons" data-aos="fade-up" data-aos-delay="1000">
           <img
             src="/assets/linkedin.png"

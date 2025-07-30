@@ -246,3 +246,27 @@ body {
 .card[data-aos].aos-animate {
   box-shadow: 0 0 20px var(--glow-color);
 }
+
+
+
+/* 🔴 Video Background */
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* 🔵 Optional Overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* Optional: darken the video */
+  z-index: -1;
+}
+
+
+

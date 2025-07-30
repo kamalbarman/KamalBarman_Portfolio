@@ -1,6 +1,8 @@
 .contact-section {
   padding: 4rem 2rem;
-  background-color: #0a0a0a;
+  background-color: rgba(23, 23, 23, 0.1);
+  backdrop-filter: blur(7px);
+  /* background-color: #0a0a0a; */
   text-align: center;
 }
 

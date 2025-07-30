@@ -1,0 +1,9 @@
+.audio-circle-canvas {
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  width: 80vw;
+  height: 90vh;
+  z-index: -1;
+  pointer-events: none;
+}

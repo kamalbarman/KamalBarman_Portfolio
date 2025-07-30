@@ -1,7 +1,9 @@
 .footer {
+  background-color: rgba(23, 23, 23, 0.125);
+  backdrop-filter: blur(30px);
   text-align: center;
   padding: 1.5rem 1rem;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; */
   color: #fff;
   font-size: 0.9rem;
   position: relative;

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./About.css";
 import aboutPic from "../../assets/about-pic.png";
+import profileBG from "../../assets/profile-bg.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -29,12 +30,7 @@ const focusItems = [
 
 const About = () => {
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      offset: 120,
-      easing: "ease-in-out",
-      once: true,
-    });
+    AOS.init({ duration: 800, offset: 120, once: true });
   }, []);
 
   const handleTilt = (e) => {
@@ -42,8 +38,8 @@ const About = () => {
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    const rotateX = ((y - rect.height / 2) / rect.height) * 20;
-    const rotateY = ((x - rect.width / 2) / rect.width) * -20;
+    const rotateX = ((y - rect.height / 2) / rect.height) * 15;
+    const rotateY = ((x - rect.width / 2) / rect.width) * -15;
     card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
   };
 
@@ -59,7 +55,8 @@ const About = () => {
 
       <div className="about-content">
         <div className="about-image" data-aos="zoom-in">
-          <img src={aboutPic} alt="About" loading="lazy" />
+          <img src={aboutPic} alt="Profile" className="base-img" loading="lazy" />
+          <img src={profileBG} alt="Background" className="hover-img" loading="lazy" />
         </div>
 
         <div className="about-text" data-aos="fade-up" data-aos-delay="200">
@@ -97,6 +94,7 @@ const About = () => {
               onMouseMove={handleTilt}
               onMouseLeave={resetTilt}
             >
+              <div className="particle-bg"></div>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <div className="extra-info">
