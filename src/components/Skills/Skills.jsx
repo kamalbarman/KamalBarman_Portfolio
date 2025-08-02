@@ -13,7 +13,7 @@ import mongoLogo from "../../assets/mongodb.png";
 import mysqlLogo from "../../assets/mysql.png";
 import pythonLogo from "../../assets/python.png";
 import c from "../../assets/c.png";
-import cpp from "../../assets/cpp.png";
+import cpp from "../../assets/Cpp.png";
 
 import photoshopLogo from "../../assets/photoshop.png";
 import illustratorLogo from "../../assets/illustrator.png";
