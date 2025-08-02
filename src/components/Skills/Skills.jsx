@@ -19,6 +19,9 @@ import photoshopLogo from "../../assets/photoshop.png";
 import illustratorLogo from "../../assets/illustrator.png";
 import figmaLogo from "../../assets/figma.png";
 
+
+
+
 const developmentSkills = [
   {
     title: "Programming Languages",
@@ -100,10 +103,27 @@ const SkillSection = ({ heading, categories }) => (
   </div>
 );
 
+
 const Skills = () => {
   useEffect(() => {
     AOS.init({ duration: 1000, offset: 80, easing: "ease-in-out", once: true });
   }, []);
+
+useEffect(() => {
+  const reveals = document.querySelectorAll(".reveal");
+  const handleScroll = () => {
+    reveals.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) {
+        el.classList.add("active");
+      }
+    });
+  };
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   return (
     <section className="Skills-section" id="Skills">

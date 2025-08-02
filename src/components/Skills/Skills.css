@@ -57,7 +57,7 @@
 .Skills-item:hover {
   transform: scale(1.05) rotateZ(-1deg);
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 22px var(--glow-color, #ff4f9c);
+  box-shadow: 0 0 22px var(--glow-color, #ed4a4a);
   animation: backOutDown 0.6s ease-in-out both;
 }
 
@@ -93,7 +93,7 @@
 
 /* Icon Glow */
 .check-icon {
-  color: var(--glow-color, #ff4f9c);
+  color: var(--glow-color, #ed4a4a);
   font-size: 1.3rem;
   margin-left: auto;
   transition: transform 0.4s ease, filter 0.4s ease;
@@ -147,11 +147,10 @@
   }
 }
 
-
 @media screen and (max-width: 579px) {
   .Skills-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns always */
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     justify-content: center;
   }
@@ -195,8 +194,6 @@
     padding: 30px 10px;
   }
 }
-
-
 
 /* 🔥 AOS Scroll Reveal Effects */
 [data-aos] {
@@ -279,5 +276,14 @@
   }
 }
 
+/* 🌟 Scroll Reveal Core */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 
-
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

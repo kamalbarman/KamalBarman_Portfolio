@@ -1,0 +1,187 @@
+:root {
+  --dot-size: 22px;
+  --line-color: #ff4c4c;
+  --line-glow: rgba(255, 76, 76, 0.5);
+}
+
+.timeline-section {
+  background-color: #0f0f0f5a;
+  backdrop-filter: blur(7px);
+  color: #f7f7f7;
+  padding: 4rem 1rem;
+  position: relative;
+}
+
+.timeline-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #ff7777;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* 🟥 Vertical Line */
+.timeline-container {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(#ff0000, #ff7b7b);
+  box-shadow: 0 0 12px 4px var(--line-glow);
+  transform: translateX(-50%);
+  z-index: 1;
+  animation: growLine 6s ease forwards;
+}
+
+@keyframes growLine {
+  to {
+    height: 100%;
+  }
+}
+
+/* 🔹 Timeline Item */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 1.5rem 2rem;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+/* 🟠 Dot */
+.timeline-dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--dot-size);
+  height: var(--dot-size);
+  background-color: var(--line-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 0 8px 2px rgba(255, 100, 100, 0.5);
+}
+
+/* 📄 Content */
+.timeline-content {
+  background-color: #1a1a1a35;
+  backdrop-filter: blur(10px);
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 0 12px rgba(245, 58, 58, 0.652);
+  transition: transform 0.5s ease;
+}
+
+.timeline-content h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ff7b7b;
+}
+
+.timeline-content h4 {
+  margin: 0.3rem 0 0.6rem;
+  font-size: 1rem;
+  color: #f0f0f0;
+}
+
+.timeline-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* 📱 Responsive */
+@media screen and (max-width: 768px) {
+  :root {
+    --dot-size: 16px;
+  }
+
+  .timeline-section {
+    padding: 2rem 1rem;
+  }
+
+  .timeline-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-container::before {
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-item.left,
+  .timeline-item.right {
+    left: 0;
+    text-align: left;
+  }
+
+  .timeline-dot {
+    left: 20px;
+    transform: translateY(-50%);
+  }
+
+  .timeline-content {
+    padding: 0.8rem 1rem;
+  }
+
+  .timeline-content h3 {
+    font-size: 1rem;
+  }
+
+  .timeline-content h4 {
+    font-size: 0.8rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.7rem;
+  }
+}
+
+/* 📱 Ultra Compact for Small Phones */
+@media screen and (max-width: 480px) {
+  .timeline-dot {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-bottom: 0.5rem;
+    transform: none;
+  }
+
+  .timeline-item {
+    padding-left: 1rem;
+  }
+}

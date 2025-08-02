@@ -36,8 +36,8 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(4px);
+  /* background: rgba(0, 0, 0, 0.55); */
+  /* backdrop-filter: blur(4px); */
   z-index: 0;
 }
 
@@ -108,8 +108,8 @@ body {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
+  /* background: rgba(0, 0, 0, 0.5); */
+  backdrop-filter: blur(1.5px);
   z-index: 0;
 }
 
@@ -212,8 +212,9 @@ body {
   .profile-section {
     flex-direction: column;
     text-align: center;
-    gap: 2rem;
-    padding: 1rem;
+    padding-bottom: 2rem; 
+     min-height: auto;
+    
   }
 
   .profile-text {
@@ -264,9 +265,137 @@ body {
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* Optional: darken the video */
+  /* Optional: darken the video */
+  /* background: rgba(0, 0, 0, 0.5);  */
   z-index: -1;
 }
 
 
+@media (max-width: 413px) {
+  .profile-section {
+    flex-direction: column;
+    padding: 1rem 0.6rem;
+    gap: 1.2rem;
+    text-align: center;
+  }
 
+  .profile-text {
+    padding: 0 0.5rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .profile-text h4 {
+    font-size: 1.6rem;
+  }
+
+  .fdeveloper {
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+  }
+
+  .profile-pic-container img {
+    width: 130px;
+    border-width: 1px;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.8rem;
+    width: 100%;
+  }
+
+  .profile-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .social-icons img {
+    width: 28px;
+    margin: 0 6px;
+  }
+
+  .wave-name {
+    height: clamp(50px, 8vw, 70px);
+    margin: 1rem auto;
+  }
+
+  .wave-name h1 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .card[data-aos].aos-animate {
+    box-shadow: 0 0 10px var(--glow-color);
+  }
+
+  .btn-outline,
+  .btn-filled {
+    border-radius: 20px;
+  }
+
+  .video-bg {
+  height: 50vh;
+  object-fit: cover;
+  top: 0;
+  bottom: auto;
+  clip-path: inset(0 0 15% 0); /* Crop bottom 15% */
+}
+
+
+[data-aos][class*="text"] {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 0.4rem 0.6rem;
+  max-width: 100%;
+  word-break: break-word;
+  text-align: center;
+}
+
+[data-aos].aos-animate {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+}
+@media (max-width: 413px) {
+  .profile-section {
+    min-height: auto;
+    padding-bottom: 2rem; /* Ensures it's not flush, but tidy */
+  }
+
+  .video-bg {
+    height: 65vh;
+    clip-path: inset(0 0 15% 0); /* Crops lower part visually */
+  }
+
+  .audio-circle-canvas {
+    height: 50vh; /* Reduce canvas size */
+    top: 25%;
+    left: 5%;
+  }
+
+  .footer,
+  .bottom-text {
+    display: none; /* If any dummy footer repeats like "© John Doe…" */
+  }
+}
+
+
+.profile-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3rem;
+  width: 100%;
+  z-index: 2;
+}
+
+.profile-dashboard {
+  flex: 1 1 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}

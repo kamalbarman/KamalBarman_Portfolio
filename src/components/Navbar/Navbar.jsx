@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,10 @@ const Navbar = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
+
+  const scrollToHome = () =>{
+    window.scrollTo({ top: 0, behavior: "smooth"})
+  }
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");

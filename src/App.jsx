@@ -40,13 +40,17 @@ import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects/Projects";
 import ContactForm from "./components/Contact/ContactForm";
 import Footer from "./components/Footer/Footer";
+import scrollElement from "react-scroll/modules/mixins/scroll-element";
+import Timeline from "./components/Timeline/Timeline";
 
 function App() {
   return (
     <>
+    <scrollElement/>
       <Navbar />
       <Profile />
       <About />
+      <Timeline />
       <Skills />
       <Projects />
       <ContactForm />

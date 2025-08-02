@@ -1,104 +1,124 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./About.css";
-import aboutPic from "../../assets/about-pic.png";
-import profileBG from "../../assets/profile-bg.png";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import ProImg from "../../assets/about-pic.png";
 
-const focusItems = [
-  {
-    title: "Water Wave Text",
-    description: "Crafting fluid typographic motion for dynamic headings.",
-    back: "Explore dynamic water-inspired animations coming soon.",
-  },
-  {
-    title: "Scroll Reveal Effects",
-    description: "Designing smooth entry animations for engaging user flow.",
-    back: "Stay tuned for advanced entry choreography enhancements.",
-  },
-  {
-    title: "Palette-Driven UI",
-    description: "Integrating emotionally resonant themes into the full layout.",
-    back: "New mood-based theming options in development.",
-  },
-  {
-    title: "Responsive Glow",
-    description: "Layering subtle glow effects with adaptive interactions.",
-    back: "More glow-based motion feedback launching shortly.",
-  },
+const lines = [
+  "Hi, I'm Kamal Barman,",
+  "A passionate full-stack developer,",
+  "Crafting elegant & performant web solutions.",
 ];
 
 const About = () => {
+  const [displayedText, setDisplayedText] = useState([]);
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+
   useEffect(() => {
-    AOS.init({ duration: 800, offset: 120, once: true });
-  }, []);
+    if (lineIndex < lines.length) {
+      const currentLine = lines[lineIndex];
+      if (charIndex <= currentLine.length) {
+        const timeout = setTimeout(() => {
+          setDisplayedText((prev) => [
+            ...prev.slice(0, lineIndex),
+            currentLine.slice(0, charIndex),
+          ]);
+          setCharIndex((prev) => prev + 1);
+        }, 50); // speed per character
+        return () => clearTimeout(timeout);
+      } else {
+        // After finishing a line, move to next
+        const lineTimeout = setTimeout(() => {
+          setLineIndex((prev) => prev + 1);
+          setCharIndex(0);
+        }, 800); // delay before next line
+        return () => clearTimeout(lineTimeout);
+      }
+    }
+  }, [charIndex, lineIndex]);
 
-  const handleTilt = (e) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const rotateX = ((y - rect.height / 2) / rect.height) * 15;
-    const rotateY = ((x - rect.width / 2) / rect.width) * -15;
-    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  // ----- Handle focus cards here as you already did -----
+  const [activeCard, setActiveCard] = useState(null);
+
+  const handleCardClick = (index) => {
+    setActiveCard(index === activeCard ? null : index);
+    setTimeout(() => {
+      document
+        .getElementById("about")
+        // .scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 300);
   };
 
-  const resetTilt = (e) => {
-    e.currentTarget.style.transform = "perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)";
+  const handleClose = (e) => {
+    e.stopPropagation();
+    setActiveCard(null);
   };
 
-  const introText = "Hi! I’m Kamal Barman, a detail-driven Frontend Developer and solo creator.";
+  const focusItems = [
+    {
+      title: "Web Development",
+      brief: "Frontend & Backend",
+      description:
+        "I specialize in building responsive websites using React, Node.js, and Express. I create optimized and scalable full-stack web apps with beautiful UI and efficient performance.",
+    },
+    {
+      title: "UI/UX Design",
+      brief: "User-centered Design",
+      description:
+        "I focus on designing intuitive, user-friendly interfaces. Using Figma, Adobe XD, and other tools, I create clean layouts and interactive prototypes that enhance user experiences.",
+    },
+    {
+      title: "Branding & Graphics Design",
+      brief: "Eyecatching Visuals",
+      description:
+        "I create stunning graphics and branding materials. From logos,posters to social media graphics, I ensure your brand stands out with unique and professional designs.",
+    },
+  
+  ];
 
   return (
     <section className="about-section" id="about">
-      <h2 data-aos="fade-up">About Me</h2>
+      <h2>About Me</h2>
 
       <div className="about-content">
-        <div className="about-image" data-aos="zoom-in">
-          <img src={aboutPic} alt="Profile" className="base-img" loading="lazy" />
-          <img src={profileBG} alt="Background" className="hover-img" loading="lazy" />
+        <div className="about-image">
+          <img src={ProImg} alt="Profile" className="base-img" />
         </div>
 
-        <div className="about-text" data-aos="fade-up" data-aos-delay="200">
-          <p className="merge-effect">
-            {Array.from(introText).map((char, i) => {
-              const style = {
-                "--x-offset": `${Math.random() * 100 - 50}px`,
-                "--y-offset": `${Math.random() * 100 - 50}px`,
-                "--rotate": `${Math.random() * 30 - 15}deg`,
-                "--delay": i,
-              };
-              return (
-                <span key={i} className="char" style={style}>
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              );
-            })}
-          </p>
-          <p data-aos="fade-up" data-aos-delay="600">
-            With a foundation in React, advanced CSS animation, and UI/UX storytelling,
-            I build polished digital experiences that balance creativity and clarity.
-          </p>
+        <div className="about-text">
+          <div className="multi-typewriter">
+            {displayedText.map((line, i) => (
+              <p key={i}>
+                {line}
+                {i === displayedText.length - 1 && lineIndex < lines.length ? (
+                  <span className="cursor">|</span>
+                ) : null}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
 
       <div className="focus-section">
-        <h2 data-aos="fade-up" data-aos-delay="400">Currently Focused On</h2>
+        <h2>My Focus</h2>
         <div className="focus-grid">
           {focusItems.map((item, index) => (
             <div
+              className={`focus-card ${activeCard === index ? "flipped" : ""}`}
               key={index}
-              className="focus-card"
-              data-aos="flip-left"
-              data-aos-delay={index * 150}
-              onMouseMove={handleTilt}
-              onMouseLeave={resetTilt}
+              onClick={() => handleCardClick(index)}
             >
-              <div className="particle-bg"></div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <div className="extra-info">
-                <p>{item.back}</p>
+              <div className="focus-card-inner">
+                <div className="focus-card-front">
+                  <h3>{item.title}</h3>
+                  <p>{item.brief}</p>
+                </div>
+                <div className="focus-card-back">
+                  <button className="close-btn" onClick={handleClose}>
+                    ×
+                  </button>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
               </div>
             </div>
           ))}
